@@ -25,33 +25,33 @@ module.exports = {
       network_id: '*',
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${key}`),
+      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/b94cd6cdb99e41b9a8784c675060afc1`),
       network_id: 4,
       timeoutBlocks: 2000,
       skipDryRun: true,
       gasPrice: 100000000000,
     },
-    ropsten: {
-      provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${key}`),
-      network_id: 3,
-      timeoutBlocks: 2000,
-      skipDryRun: true,
-      gasPrice: 100000000000,
-    },
+    // ropsten: {
+    //   provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/b94cd6cdb99e41b9a8784c675060afc1`),
+    //   network_id: 3,
+    //   //timeoutBlocks: 2000,
+    //   skipDryRun: true,
+    //   gasPrice: 25000000000
+    // },
     kovan: {
       provider: () => {
-        return new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${key}`)
+        return new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/a2fb9021f308472887795341e03aee7c`)
       },
       network_id: 42,
       gas: 6700000,
     },
     ropsten: {
       provider: () => {
-        return new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${key}`)
+        return new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/b94cd6cdb99e41b9a8784c675060afc1`)
       },
       network_id: 3,
-      gasPrice: 50000000000,
-      gas: 4000000,
+      //gasPrice: 50000000000,
+      //gas: 4000000,
     },
     mainnet: {
       provider: () => new HDWalletProvider(mnemonic, `https://mainnet.infura.io/v3/${key}`),
@@ -74,7 +74,6 @@ module.exports = {
       skipDryRun: true,
     }
   },
-
   mocha: {
     reporter: 'eth-gas-reporter',
     reporterOptions: {

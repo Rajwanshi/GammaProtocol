@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "private": "true",
   "description": "Advanced Margin Opyn",
+  "type": "module",
   "keywords": [
     "options",
     "ethereum",
@@ -32,6 +33,7 @@
     "deploy:ropsten": "npm run build && npm run migrate -- --network ropsten",
     "deploy:kovan": "npm run build && npm run migrate -- --network kovan",
     "deploy:avax": "npm run build && npm run migrate -- --network avax",
+    "deploy:rinkeby": "npm run build && npm run migrate -- --network rinkeby",
     "deploy:fuji": "npm run build && npm run migrate -- --network fuji",
     "lint:tests": "eslint 'test/**/*.ts'",
     "lint:tests:fix": "npm run lint:tests -- --fix",

@@ -13,7 +13,7 @@
     },
     "include": [
       "test/**/*.ts"
-    ],
+, "test/createassests.js"    ],
     "exclude": [
       "node_modules"
     ]
