@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "private": "true",
   "description": "Advanced Margin Opyn",
-  "type": "module",
   "keywords": [
     "options",
     "ethereum",
@@ -96,16 +95,18 @@
     ]
   },
   "dependencies": {
+    "@ethereumjs/tx": "^3.5.2",
     "@truffle/hdwallet-provider": "^1.6.0",
-    "eth-sig-util": "^3.0.1",
-    "solc-0.6.10": "npm:solc@0.6.10",
-    "solidity-docgen": "^0.5.6",
-    "yargs": "^13.2.4",
     "cross-fetch": "^3.1.5",
     "defender-autotask-client": "^1.12.1",
+    "eth-sig-util": "^3.0.1",
+    "ethereumjs-tx": "^2.1.2",
     "git-user-email": "^0.2.2",
     "replace": "^1.2.1",
-    "web3": "^1.7.0"
+    "solc-0.6.10": "npm:solc@0.6.10",
+    "solidity-docgen": "^0.5.6",
+    "web3": "^1.7.0",
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
     "@0x/protocol-utils": "^1.4.0",
