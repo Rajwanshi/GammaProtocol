@@ -102,6 +102,7 @@
     "eth-sig-util": "^3.0.1",
     "ethereumjs-tx": "^2.1.2",
     "git-user-email": "^0.2.2",
+    "keccak256": "^1.0.6",
     "replace": "^1.2.1",
     "solc-0.6.10": "npm:solc@0.6.10",
     "solidity-docgen": "^0.5.6",
