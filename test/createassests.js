@@ -21,9 +21,7 @@ const ActionType = {
 }
 const DEV_MODE_ON = true
 const INFURA_KEY_ROPSTEN = 'https://ropsten.infura.io/v3/b94cd6cdb99e41b9a8784c675060afc1'
-const PKEY = DEV_MODE_ON
-  ? '0xb1d47c576d09cc86fe925a1b536f03b8f9278fb9c28ab35f7815817e28668355'
-  : ''
+const PKEY = DEV_MODE_ON ? '0xb1d47c576d09cc86fe925a1b536f03b8f9278fb9c28ab35f7815817e28668355' : ''
 const OWNER_ADRESS = DEV_MODE_ON
   ? '0x280CbD785B928705c8871cc709477b2c6e339A9F'
   : '0x0bc29635CA2C99eFc1DA2be0Acc9E4fFBe01bd0F'
