@@ -23,7 +23,7 @@ const DEV_MODE_ON = true
 const INFURA_KEY_ROPSTEN = 'https://ropsten.infura.io/v3/b94cd6cdb99e41b9a8784c675060afc1'
 const PKEY = DEV_MODE_ON
   ? '0xb1d47c576d09cc86fe925a1b536f03b8f9278fb9c28ab35f7815817e28668355'
-  : '23293fa0e07fa051d58ace2b2a92c79abb32fcf7aa75daef44c80f362e7a7363'
+  : ''
 const OWNER_ADRESS = DEV_MODE_ON
   ? '0x280CbD785B928705c8871cc709477b2c6e339A9F'
   : '0x0bc29635CA2C99eFc1DA2be0Acc9E4fFBe01bd0F'
@@ -98,8 +98,8 @@ function initSmartContract(contractAddresses, contractBuildPath) {
   return smartContract
 }
 
-function excCreateOToken(days, strikePrice, isPut){
-  let date = new Date()
+function excCreateOToken(days, strikePrice, isPut) {
+  const date = new Date()
   // set UTC date 8:00
   date.setDate(date.getUTCDate() + days)
   date.setHours(8)
@@ -109,28 +109,28 @@ function excCreateOToken(days, strikePrice, isPut){
   const expiryTime = web3.utils.toBN(Math.floor(date.getTime() / 1000) - 66600)
 
   otokenFactorySC.methods
-  .createOtoken(
-    web3.utils.toChecksumAddress(WETH_MAINNET_ADDRESS),
-    web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
-    web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
-    (strikePrice).toString(),
-    expiryTime,
-    isPut
-  )
-  .send({ from: OWNER_ADRESS, gas: 100000 })
-  .on('transactionHash', function (hash) {
-    console.log('Transaction hash')
-    console.log(hash)
-  })
-  .on('confirmation', function (confirmationNumber, receipt) {
-    console.log('Confirmation log')
-    console.log(confirmationNumber)
-    //console.log(receipt)
-  })
-  .on('receipt', function (receipt) {
-    console.log('Receipt log')
-    console.log(receipt)
-  })
+    .createOtoken(
+      web3.utils.toChecksumAddress(WETH_MAINNET_ADDRESS),
+      web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
+      web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
+      strikePrice.toString(),
+      expiryTime,
+      isPut,
+    )
+    .send({ from: OWNER_ADRESS, gas: 100000 })
+    .on('transactionHash', function (hash) {
+      console.log('Transaction hash')
+      console.log(hash)
+    })
+    .on('confirmation', function (confirmationNumber, receipt) {
+      console.log('Confirmation log')
+      console.log(confirmationNumber)
+      //console.log(receipt)
+    })
+    .on('receipt', function (receipt) {
+      console.log('Receipt log')
+      console.log(receipt)
+    })
 }
 
 function runGetController() {
@@ -163,10 +163,8 @@ function runGetOTokenFactory() {
     })
 }
 
-function runGetOtokenImpl(){
-  addressBookSC.methods
-  .getOtokenImpl()
-  .call({from: OWNER_ADRESS}, function(error, result){
+function runGetOtokenImpl() {
+  addressBookSC.methods.getOtokenImpl().call({ from: OWNER_ADRESS }, function (error, result) {
     console.log(result)
   })
 }
@@ -220,14 +218,15 @@ function excDepositCollateralMethod() {
     })
 }
 
-function excWhitelistProduct(){
+function excWhitelistProduct() {
   whitelistSC.methods
-  .whitelistProduct(
-    web3.utils.toChecksumAddress(WETH_MAINNET_ADDRESS),
-    web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
-    web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
-    true)
-  .send({ from: OWNER_ADRESS, gas: 100000 })
+    .whitelistProduct(
+      web3.utils.toChecksumAddress(WETH_MAINNET_ADDRESS),
+      web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
+      web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
+      true,
+    )
+    .send({ from: OWNER_ADRESS, gas: 100000 })
     .on('transactionHash', function (hash) {
       console.log('Transaction hash')
       console.log(hash)
@@ -243,19 +242,20 @@ function excWhitelistProduct(){
     })
 }
 
-function excIsWhitelistedProduct(){
+function excIsWhitelistedProduct() {
   whitelistSC.methods
-  .isWhitelistedProduct(
-    web3.utils.toChecksumAddress(WETH_MAINNET_ADDRESS),
-    web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
-    web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
-    true
-  ).call({from: OWNER_ADRESS}, function(error, result){
-    console.log(result)
-  })
+    .isWhitelistedProduct(
+      web3.utils.toChecksumAddress(WETH_MAINNET_ADDRESS),
+      web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
+      web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS),
+      true,
+    )
+    .call({ from: OWNER_ADRESS }, function (error, result) {
+      console.log(result)
+    })
 }
 
-function excWhitelistCollateral(){
+function excWhitelistCollateral() {
   whitelistSC.methods
     .whitelistCollateral(web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS))
     .send({ from: OWNER_ADRESS, gas: 100000 })
@@ -274,15 +274,15 @@ function excWhitelistCollateral(){
     })
 }
 
-function excIsWhitelistedCallee(){
+function excIsWhitelistedCallee() {
   whitelistSC.methods
     .isWhitelistedCallee(web3.utils.toChecksumAddress(OWNER_ADRESS))
-    .call({from: OWNER_ADRESS}, function(error, result){
-        console.log(result)
+    .call({ from: OWNER_ADRESS }, function (error, result) {
+      console.log(result)
     })
 }
 
-function excWhitelistCallee(){
+function excWhitelistCallee() {
   whitelistSC.methods
     .whitelistCallee(web3.utils.toChecksumAddress(OWNER_ADRESS))
     .send({ from: OWNER_ADRESS, gas: 100000 })
@@ -301,12 +301,12 @@ function excWhitelistCallee(){
     })
 }
 
-function excIsWhitelistedCollateral(){
+function excIsWhitelistedCollateral() {
   whitelistSC.methods
-  .isWhitelistedCollateral(web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS))
-  .call({from: OWNER_ADRESS}, function(error, result){
-    console.log(result)
-  })
+    .isWhitelistedCollateral(web3.utils.toChecksumAddress(USDC_MAINNET_ADDRESS))
+    .call({ from: OWNER_ADRESS }, function (error, result) {
+      console.log(result)
+    })
 }
 
 function excOpenVaultMethod(smartContract) {
